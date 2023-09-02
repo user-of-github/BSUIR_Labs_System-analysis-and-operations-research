@@ -1,0 +1,15 @@
+.idea/
+
+.vscode
+/.vscode
+.vscode/
+
+build/
+
+*.rar
+.rar
+
+Testing/
+venv/
+__pycache__/
+
