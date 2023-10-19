@@ -13,6 +13,7 @@ def get_solution_with_branch_and_bound_method(
 ) -> np.array:
     # just copy items to work
     c: np.array = deepcopy(vector_c)
+
     a: np.array = deepcopy(matrix_a)
     b: np.array = deepcopy(vector_b)
     d_minus: np.array = deepcopy(vector_d_minus)

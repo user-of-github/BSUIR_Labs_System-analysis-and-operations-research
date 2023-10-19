@@ -17,12 +17,10 @@ def generate_cutoff_constraint_or_optimal_plan(a_matrix: np.array, b_vector: np.
 
     x_with_roof, B = simplex_method(c, A, x, B)
 
-    print("STEP 1:")
-    print(f"x = {x_with_roof}")
-    print(f"B = {B}")
+    # print(f"x = {x_with_roof}")
+    # print(f"B = {B}")
 
     # STEP 2
-    print("\nSTEP 2:")
     k = -1
     j0 = -1
     for i in range(len(x_with_roof)):
@@ -33,20 +31,20 @@ def generate_cutoff_constraint_or_optimal_plan(a_matrix: np.array, b_vector: np.
     else:
         print(f"Optimal plan x = {x_with_roof}")
 
-    N = [i for i in range(m) if i not in B]
-    print(f"j = {j0}")
-    print(f"k = {k}")
-    print(f"N = {N}")
+    N: list[int] = [i for i in range(m) if i not in B]
+    # print(f"j = {j0}")
+    # print(f"k = {k}")
+    # print(f"N = {N}")
 
     # STEP 3
-    print("\nSTEP 3:")
+    # print("\nSTEP 3:")
     A_b = np.zeros((n, n))
 
     for i in range(n):
         A_b[:, i] = A[:, B[i]]
 
-    print("Ab:")
-    print(A_b)
+    # print("Ab:")
+    # print(A_b)
 
     len_n = len(N)
     A_n = np.zeros((len_n, len_n))
@@ -54,32 +52,31 @@ def generate_cutoff_constraint_or_optimal_plan(a_matrix: np.array, b_vector: np.
     for i in range(len_n):
         A_n[:, i] = A[:, N[i]]
 
-    print("An:")
-    print(A_n)
+    # print("An:")
+    # print(A_n)
 
     # STEP 4
-    print("\nSTEP 4:")
+    # print("\nSTEP 4:")
     Ab_inv = np.linalg.inv(A_b)
-    print("A(b^-1):")
-    print(Ab_inv)
+    # print("A(b^-1):")
+    # print(Ab_inv)
 
     # STEP 5
-    print("\nSTEP 5:")
+    # print("\nSTEP 5:")
     Ab_inv_dot_An = np.dot(Ab_inv, A_n)
-    print("Matrix product:")
-    print(Ab_inv_dot_An)
+    # print("Matrix product:")
+    # print(Ab_inv_dot_An)
 
     # STEP 6
-    print("\nSTEP 6:")
+    # print("\nSTEP 6:")
     l = Ab_inv_dot_An[k]
-    print(f"l = {l}")
+    # print(f"l = {l}")
     l_fractional_parts = [l[i] - np.floor(l[i]) for i in range(len(l))]
 
-    print("Clipping Constraints:")
+    print("Cutoff Constraints:")
     print(f"{l_fractional_parts[0]} x_{N[0] + 1} ", end='')
 
     for i in range(1, len(l_fractional_parts)):
         print(f"+ {l_fractional_parts[i]} x_{N[i] + 1}", end=" ")
 
     print(f"- x_{m + 1} = {x_with_roof[j0] - np.floor(x_with_roof[j0])}")
-    print(f"x_{m + 1} >= 0")
