@@ -1,5 +1,7 @@
-from kommivoyager import tsp_algorithm
+from tsp import tsp_algorithm
 from data import cities, distances
+
+
 
 
 def main() -> None:

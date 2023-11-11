@@ -21,10 +21,9 @@ def main() -> None:
         print(f'Topological sort: {graph.topological_sort_list}')
 
         max_path_from_start_to_stop, path_length = graph.get_max_path_len(s, t)
-        print(f'max ({s}, {t}) path: {max_path_from_start_to_stop[0]}', end='')
-
-        for i in range(1, len(max_path_from_start_to_stop)):
-            print(f' -> {max_path_from_start_to_stop[i]}', end='')
+        #print(f'max ({s}, {t}) path: {max_path_from_start_to_stop[0]}', end='')
+        #for i in range(1, len(max_path_from_start_to_stop)):
+        #    print(f' -> {max_path_from_start_to_stop[i]}', end='')
 
         print(f'\nPath length: {path_length}')
 
